@@ -37,11 +37,6 @@ const Item = styled.div`
   -ms-grid-column: ${props => props.column + 1};
 `;
 
-const Image = styled.img`
-  width: ${props => props.size || '100%'};
-  height: ${props => props.size || '100%'};
-`;
-
 const backgrounds = {
   transparent: 'rgba(0,0,0,0)',
   blue: 'linear-gradient(rgba(76, 102, 99, 0) 5%, rgba(76, 102, 99, .3), rgba(76, 102, 99, 0) 95%)',
@@ -53,16 +48,17 @@ export function Layout(props) {
       <Header>{'Наши партнеры'}</Header>
       <Grid columns={props.columns} rows={Math.floor(svgs.length / props.columns) + (svgs.length % props.columns)}>
         {svgs.map((item, index) => {
+          const imgSize = Math.floor(index / props.columns) % 2 === 0 ? '75%' : '100%';
           return <Item
             key={index}
             row={Math.floor(index / props.columns)}
             column={index % props.columns}
             background={[1, 2].includes(Math.floor(index / props.columns)) ? '#C5CBC2' : backgrounds.transparent}
           >
-            <Image
+            <img
               src={item.file.default}
               className="test"
-              size={Math.floor(index / props.columns) % 2 === 0 ? '75%' : '100%'}
+              style={{ width: imgSize, height: imgSize }}
             />
           </Item>;
         })}
