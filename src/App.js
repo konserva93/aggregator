@@ -1,8 +1,10 @@
 import { Layout } from './Layout.js';
 
+const gridColumns = 3;
+
 function App() {
   return (
-    <Layout columns="5"/>
+    <Layout columns={gridColumns}/>
   );
 }
 
